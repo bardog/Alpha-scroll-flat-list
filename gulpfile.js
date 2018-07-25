@@ -14,8 +14,17 @@ const npmDeps = {
 // additional dependencies for expo app
 const expoDeps = {
     "expo": "^27.0.1",
+    "babel-loader": "^7.1.5",
+    "expo": "^27.0.1",
+    "gulp": "^3.9.1",
+    "gulp-bump": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-json-editor": "^2.4.2",
+    "gulp-run": "^1.7.1",
+    "lodash": "^4.17.10",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "react-native": "~0.55.2",
+    "webpack-stream": "^5.0.0"
 };
 
 // main for npm publishing
@@ -30,7 +39,6 @@ const paths = {
 
 /****package.json stuff****/
 
-const updatePackageJSONforNPM = json => {};
 // read the package.json and update it for npm publishing
 gulp.task('forNPM', done => {
   gulp
