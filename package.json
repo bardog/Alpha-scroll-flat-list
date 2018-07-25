@@ -1,7 +1,11 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bardog/Alpha-scroll-flat-list.git"
+  },
   "devDependencies": {
     "jest-expo": "~27.0.0",
     "react-native-scripts": "1.14.0",
