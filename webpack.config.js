@@ -60,6 +60,7 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [__dirname, 'node_modules'],
     extensions: ['.js', '.jsx', '.scss', '.css'],
     alias: {}
   },
