@@ -7,6 +7,9 @@ const run = require('gulp-run');
 // dependencies for npm publishing
 const npmDeps = {
     "lodash": "^4.17.10",
+    "react": "16.3.1",
+    "react-native": "~0.55.2",
+    "prop-types": "^15.6.2"
 };
 // additional dependencies for expo app
 const expoDeps = {
@@ -20,7 +23,8 @@ const expoDeps = {
     "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "~0.55.2",
-    "run-sequence": "^2.2.1"
+    "prop-types": "^15.6.2",
+    "run-sequence": "^2.2.1",
 };
 
 // main for npm publishing
@@ -41,7 +45,8 @@ gulp.task('forNPM', done => {
     .src('./package.json')
     .pipe(
       jeditor(function(json) {
-        json.dependencies = npmDeps;
+        json.peerDependencies = npmDeps;
+        json.dependencies = {};
         json.main = npmMain;
         return json;
       })
@@ -70,7 +75,6 @@ gulp.task('forExpo', done => {
   done();
 });
 
-gulp.task('publish', () => {
-  runSequence(['forNPM', 'npm-publish', 'forExpo']);
-  done();
+gulp.task('publish', done => {
+  runSequence(['forNPM', 'npm-publish', 'forExpo'], done);
 });
