@@ -4,6 +4,12 @@ const concat = require('gulp-concat');
 const jeditor = require('gulp-json-editor');
 const run = require('gulp-run');
 
+// dev dependencies
+const devDependencies = {
+  "jest-expo": "~27.0.0",
+  "react-native-scripts": "1.14.0",
+  "react-test-renderer": "16.3.1"
+};
 // dependencies for npm publishing
 const npmDeps = {
     "lodash": "^4.17.10",
@@ -44,10 +50,12 @@ gulp.task('forNPM', done => {
   gulp
     .src('./package.json')
     .pipe(
-      jeditor(function(json) {
+      jeditor(json => {
         json.peerDependencies = npmDeps;
-        json.dependencies = {};
         json.main = npmMain;
+        delete json.dependencies;
+        delete json.devDependencies;
+
         return json;
       })
     )
@@ -65,9 +73,13 @@ gulp.task('forExpo', done => {
   gulp
     .src('./package.json')
     .pipe(
-      jeditor({
-        dependencies: expoDeps,
-        main: expoMain
+      jeditor(json => {
+        json.dependencies = expoDeps;
+        json.devDependencies = devDependencies;
+        json.main = expoMain;
+        delete json.peerDependencies;
+
+        return json;
       })
     )
     .pipe(concat('package.json'))
