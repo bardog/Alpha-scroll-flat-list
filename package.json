@@ -1,6 +1,6 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.9",
+  "version": "0.1.91",
   "private": false,
   "author": "nicolasepiscopo",
   "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
