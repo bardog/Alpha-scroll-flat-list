@@ -53,7 +53,6 @@ gulp.task('forNPM', done => {
       jeditor(json => {
         json.peerDependencies = npmDeps;
         json.main = npmMain;
-        json.nativePackage = true;
         delete json.dependencies;
         delete json.devDependencies;
 
@@ -78,7 +77,6 @@ gulp.task('forExpo', done => {
         json.dependencies = expoDeps;
         json.devDependencies = devDependencies;
         json.main = expoMain;
-        delete json.nativePackage;
         delete json.peerDependencies;
 
         return json;
@@ -90,5 +88,7 @@ gulp.task('forExpo', done => {
 });
 
 gulp.task('publish', done => {
-  runSequence(['forNPM', 'npm-publish', 'forExpo'], done);
+  runSequence(['forNPM', 'npm-publish'], done);
 });
+
+gulp.task('recover', ['forExpo']);
