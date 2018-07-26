@@ -1,4 +1,4 @@
-import AlphaScrollFlatList from './components/AlphaScrollFlatList';
+import AlphaScrollFlatList from './src/components/AlphaScrollFlatList';
 
 export {
     AlphaScrollFlatList
