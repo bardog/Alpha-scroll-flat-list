@@ -88,3 +88,5 @@ AlphaScrollFlatList.defaultProps = {
     reverse: false,
     itemHeight: 20
 };
+
+module.exports = AlphaScrollFlatList;
