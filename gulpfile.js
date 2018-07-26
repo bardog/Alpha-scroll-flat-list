@@ -2,8 +2,6 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const jeditor = require('gulp-json-editor');
 const bump = require('gulp-bump');
-const webpack_stream = require('webpack-stream');
-const webpackConfig = require('./webpack.config');
 const run = require('gulp-run');
 
 // dependencies for npm publishing
@@ -22,8 +20,7 @@ const expoDeps = {
     "gulp-run": "^1.7.1",
     "lodash": "^4.17.10",
     "react": "16.3.1",
-    "react-native": "~0.55.2",
-    "webpack-stream": "^5.0.0"
+    "react-native": "~0.55.2"
 };
 
 // main for npm publishing
