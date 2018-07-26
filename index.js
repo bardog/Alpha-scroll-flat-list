@@ -1,5 +1,7 @@
 import AlphaScrollFlatList from './src/components/AlphaScrollFlatList';
 
-module.exports = AlphaScrollFlatList;
+export {
+    AlphaScrollFlatList
+};
 
 export default AlphaScrollFlatList;

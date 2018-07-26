@@ -12,10 +12,10 @@ const devDependencies = {
 };
 // dependencies for npm publishing
 const npmDeps = {
-    "lodash": "^4.17.10",
-    "react": "16.3.1",
-    "react-native": "~0.55.2",
-    "prop-types": "^15.6.2"
+    "lodash": "*",
+    "react": "*",
+    "react-native": "*",
+    "prop-types": "*"
 };
 // additional dependencies for expo app
 const expoDeps = {
@@ -53,6 +53,7 @@ gulp.task('forNPM', done => {
       jeditor(json => {
         json.peerDependencies = npmDeps;
         json.main = npmMain;
+        json.nativePackage = true;
         delete json.dependencies;
         delete json.devDependencies;
 
@@ -77,6 +78,7 @@ gulp.task('forExpo', done => {
         json.dependencies = expoDeps;
         json.devDependencies = devDependencies;
         json.main = expoMain;
+        delete json.nativePackage;
         delete json.peerDependencies;
 
         return json;
