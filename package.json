@@ -1,7 +1,12 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.8",
+  "version": "0.1.81",
   "private": false,
+  "author": "nicolasepiscopo",
+  "keywords": [
+    "react-native", "react", "flat-list", "flatlist", "list",
+    "alphabetic", "scroll"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bardog/Alpha-scroll-flat-list.git"

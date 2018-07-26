@@ -34,7 +34,7 @@ const expoDeps = {
 };
 
 // main for npm publishing
-const npmMain = 'index.js';
+const npmMain = './src/index.js';
 // main for expo app
 const expoMain = "./node_modules/react-native-scripts/build/bin/crna-entry.js";
 
