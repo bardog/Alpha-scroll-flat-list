@@ -1,6 +1,6 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.81",
+  "version": "0.1.9",
   "private": false,
   "author": "nicolasepiscopo",
   "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
@@ -8,33 +8,11 @@
     "type": "git",
     "url": "git+https://github.com/bardog/Alpha-scroll-flat-list.git"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "jest-expo"
-  },
-  "dependencies": {
-    "expo": "^27.0.1",
-    "babel-loader": "^7.1.5",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-json-editor": "^2.4.2",
-    "gulp-run": "^1.7.1",
-    "lodash": "^4.17.10",
-    "react": "16.3.1",
-    "react-native": "~0.55.2",
-    "prop-types": "^15.6.2",
-    "run-sequence": "^2.2.1"
-  },
-  "devDependencies": {
-    "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
+  "main": "./index.js",
+  "peerDependencies": {
+    "lodash": "*",
+    "react": "*",
+    "react-native": "*",
+    "prop-types": "*"
   }
 }

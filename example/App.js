@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-import AlphaScrollFlatList from './src/components/AlphaScrollFlatList';
-import people from './src/constants/people';
+import AlphaScrollFlatList from '../src/components/AlphaScrollFlatList';
+import people from '../src/constants/people';
 
 const WIDTH = Dimensions.get('window').width;
 const ITEM_HEIGHT = 50;
