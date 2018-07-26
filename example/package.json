@@ -1,6 +1,6 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.92",
+  "version": "0.1.98",
   "private": false,
   "author": "nicolasepiscopo",
   "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
@@ -20,7 +20,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "alpha-scroll-flat-list": "^0.1.9",
+    "alpha-scroll-flat-list": "0.1.96",
     "expo": "^27.0.1",
     "babel-loader": "^7.1.5",
     "gulp": "^3.9.1",
