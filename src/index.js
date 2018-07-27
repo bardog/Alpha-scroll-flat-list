@@ -14,8 +14,47 @@ export default class AlphaScrollFlatList extends Component {
             activeLetterViewTop: 0,
             activeLetter: undefined
         };
+
+        this.scrollToEnd = this.scrollToEnd.bind(this);
+        this.scrollToIndex = this.scrollToIndex.bind(this);
+        this.scrollToItem = this.scrollToItem.bind(this);
+        this.scrollToOffset = this.scrollToOffset.bind(this);
+        this.recordInteraction = this.recordInteraction.bind(this);
+        this.flashScrollIndicators = this.flashScrollIndicators.bind(this);
     }
 
+    //Forwarded flat list methods
+    scrollToEnd () {
+        if (this.list)
+            this.list.scrollToEnd();
+    }
+
+    scrollToIndex () {
+        if (this.list)
+            this.list.scrollToIndex();
+    }
+
+    scrollToItem () {
+        if (this.list)
+            this.list.scrollToItem();
+    }
+
+    scrollToOffset () {
+        if (this.list)
+            this.list.scrollToOffset();
+    }
+
+    recordInteraction () {
+        if (this.list)
+            this.list.recordInteraction();
+    }
+
+    flashScrollIndicators () {
+        if (this.list)
+            this.list.flashScrollIndicators();
+    }
+
+    //Proper methods
     handleOnScroll (letter, activeLetterViewTop) {
         let index;
         

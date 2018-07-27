@@ -1,6 +1,6 @@
 {
   "name": "alpha-scroll-flat-list-example",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "author": "nicolasepiscopo",
   "keywords": [
@@ -28,7 +28,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "alpha-scroll-flat-list": "^0.2.0",
+    "alpha-scroll-flat-list": "^0.2.1",
     "babel-loader": "^7.1.5",
     "expo": "^27.0.1",
     "gulp": "^3.9.1",
