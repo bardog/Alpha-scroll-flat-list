@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import {AlphaScrollFlatList} from 'alpha-scroll-flat-list';
+import AlphaScrollFlatList from 'alpha-scroll-flat-list';
 
 import people from './constants/people';
 

@@ -1,9 +1,17 @@
 {
-  "name": "alpha-scroll-flat-list",
-  "version": "0.1.99",
+  "name": "alpha-scroll-flat-list-example",
+  "version": "0.2.0",
   "private": false,
   "author": "nicolasepiscopo",
-  "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
+  "keywords": [
+    "react-native",
+    "react",
+    "flat-list",
+    "flatlist",
+    "list",
+    "alphabetic",
+    "scroll"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bardog/Alpha-scroll-flat-list.git"
@@ -20,17 +28,15 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "alpha-scroll-flat-list": "0.1.96",
-    "expo": "^27.0.1",
+    "alpha-scroll-flat-list": "^0.2.0",
     "babel-loader": "^7.1.5",
+    "expo": "^27.0.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-json-editor": "^2.4.2",
     "gulp-run": "^1.7.1",
-    "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "~0.55.2",
-    "prop-types": "^15.6.2",
     "run-sequence": "^2.2.1"
   },
   "devDependencies": {
