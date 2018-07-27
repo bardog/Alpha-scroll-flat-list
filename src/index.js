@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, View } from 'react-native';
 import debounce from 'lodash/debounce';
@@ -6,14 +6,14 @@ import debounce from 'lodash/debounce';
 import AlphabeticScrollBar from './components/AlphabeticScrollBar';
 import AlphabeticScrollBarPointer from './components/AlphabeticScrollBarPointer';
 
-export default class AlphaScrollFlatList extends PureComponent {
+export default class AlphaScrollFlatList extends Component {
     constructor (props) {
         super(props);
 
         this.state = {
             activeLetterViewTop: 0,
             activeLetter: undefined
-        }
+        };
     }
 
     handleOnScroll (letter, activeLetterViewTop) {
@@ -23,7 +23,7 @@ export default class AlphaScrollFlatList extends PureComponent {
             activeLetter: letter,
             activeLetterViewTop
         });
-
+        
         if (letter === '#') {
             //it's a number or a symbol, scroll to the top or to the bottom of the list
             const firstIndex = 0;
@@ -48,7 +48,7 @@ export default class AlphaScrollFlatList extends PureComponent {
 
     getItemLayout (data, index) {
         const {itemHeight} = this.props;
-
+        
         return {
             length: itemHeight, 
             offset: itemHeight * index, 
@@ -67,7 +67,7 @@ export default class AlphaScrollFlatList extends PureComponent {
                 {this.props.hideSideBar ? null : (
                     <AlphabeticScrollBar reverse={this.props.reverse} activeColor={this.props.activeColor} onScroll={debounce(this.handleOnScroll.bind(this))} onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} />
                 )}
-                {this.state.activeLetter && !this.props.hideSideBar ? <AlphabeticScrollBarPointer letter={this.state.activeLetter} color={this.props.activeColor} top={this.state.activeLetterViewTop} /> : null} 
+                {this.state.activeLetter && !this.props.hideSideBar ? <AlphabeticScrollBarPointer letter={this.state.activeLetter} color={this.props.activeColor} top={this.state.activeLetterViewTop} /> : null} 
             </View>
         );
     }
@@ -78,7 +78,8 @@ AlphaScrollFlatList.propTypes = {
     scrollKey: PropTypes.string,
     activeColor: PropTypes.string,
     reverse: PropTypes.bool,
-    itemHeight: PropTypes.number
+    itemHeight: PropTypes.number,
+    data: PropTypes.array
 };
 
 AlphaScrollFlatList.defaultProps = {
@@ -88,5 +89,3 @@ AlphaScrollFlatList.defaultProps = {
     reverse: false,
     itemHeight: 20
 };
-
-module.exports = AlphaScrollFlatList;

@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 
-class AlphabeticScrollBarPointer extends PureComponent {
+class AlphabeticScrollBarPointer extends Component {
     render() {
         return (
             <View
@@ -19,6 +19,12 @@ class AlphabeticScrollBarPointer extends PureComponent {
         );
     }
 }
+
+AlphabeticScrollBarPointer.propTypes = {
+    top: PropTypes.number,
+    color: PropTypes.string,
+    letter: PropTypes.string
+};
 
 const styles = {
     container: {
@@ -39,6 +45,6 @@ const styles = {
         alignSelf: 'center',
         textAlign: 'center',
     }
-}
+};
 
 export default AlphabeticScrollBarPointer;

@@ -1,11 +1,14 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.1.99",
+  "version": "0.2.0",
   "private": false,
   "author": "nicolasepiscopo",
   "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bardog/Alpha-scroll-flat-list.git"
@@ -13,10 +16,12 @@
   "bugs": {
     "url": "https://github.com/bardog/Alpha-scroll-flat-list/issues"
   },
+  "dependencies": {
+    "lodash": "^4.16.6",
+    "prop-types": "^15.5.10"
+  },
   "peerDependencies": {
-    "lodash": "*",
-    "react": "*",
-    "react-native": "*",
-    "prop-types": "*"
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.44.0"
   }
 }

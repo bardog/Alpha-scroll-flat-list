@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {View, Text, PanResponder, PixelRatio, Platform} from 'react-native';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
@@ -6,22 +6,15 @@ import debounce from 'lodash/debounce';
 const ALPHABET = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const isAndroid = Platform.OS === 'android';
 
-class AlphabeticScrollBar extends PureComponent {
+class AlphabeticScrollBar extends Component {
     constructor (props) {
         super(props);
 
         this.state = {
             activeLetter: undefined,
-            activeLetterViewTop: 0
-        }
-
-        this.alphabet = ALPHABET;
-    }
-
-    componentWillReceiveProps (newProps) {
-        if (newProps.reverse !== this.props.reverse) {
-            this.alphabet = [...ALPHABET].reverse();
-        }
+            activeLetterViewTop: 0,
+            alphabet: props.reverse ? [...ALPHABET].reverse() : ALPHABET
+        };
     }
 
     componentWillMount() {
@@ -35,6 +28,16 @@ class AlphabeticScrollBar extends PureComponent {
         });
     }
 
+    componentWillReceiveProps (newProps) {
+        if (newProps.reverse !== this.props.reverse) {
+            const alphabet = newProps.reverse ? [...ALPHABET].reverse() : ALPHABET;
+            
+            this.setState({
+                alphabet
+            });
+        }
+    }
+
     getTouchedLetter (y) {
         const top = y - (this.containerTop || 0) - 10;
 
@@ -43,7 +46,7 @@ class AlphabeticScrollBar extends PureComponent {
                 activeLetterViewTop: top
             });
 
-            return this.alphabet[Math.round((top / this.containerHeight) * this.alphabet.length)]
+            return this.state.alphabet[Math.round((top / this.containerHeight) * this.state.alphabet.length)]
         }
     }
 
@@ -82,8 +85,6 @@ class AlphabeticScrollBar extends PureComponent {
     }
 
     render() {
-        const {activeLetter} = this.state;
-
         return (
             <View
                 ref={elem => this.alphabetContainer = elem}
@@ -91,11 +92,11 @@ class AlphabeticScrollBar extends PureComponent {
                 onLayout={this.handleOnLayout.bind(this)}
                 style={styles.container}
             >
-                {this.alphabet.map(letter => (
+                {this.state.alphabet.map(letter => (
                     <View key={letter} style={{paddingVertical: 1}}>
                         <Text style={{
                             ...styles.letter,
-                            fontSize: isAndroid ? ((this.portrait ? 40 : 50) / PixelRatio.get()) / PixelRatio.getFontScale() : (this.portrait ? 15 : 8), 
+                            fontSize: isAndroid ? ((this.portrait ? 40 : 50) / PixelRatio.get()) / PixelRatio.getFontScale() : (this.portrait ? 20 : 8), 
                         }}>
                             {letter}
                         </Text>
@@ -116,18 +117,18 @@ const styles = {
         alignSelf: 'center',
         fontWeight: 'bold'
     }
-}
+};
 
 AlphabeticScrollBar.propTypes = {
     onScroll: PropTypes.func,
     onScrollEnds: PropTypes.func,
     activeColor: PropTypes.string,
     reverse: PropTypes.bool
-}
+};
 
 AlphabeticScrollBar.propTypes = {
     onScroll: () => {},
     onScrollEnds: () => {}
-}
+};
 
 export default AlphabeticScrollBar;
