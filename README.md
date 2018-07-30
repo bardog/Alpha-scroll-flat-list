@@ -1,9 +1,5 @@
 # Alpha scroll flat list
 
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-
-Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
-
 ## Description
 
 This package provides an alphabetical scrolling capable FlatList. It supports thousands of items and runs smoothly on phones. It works the same 
@@ -16,11 +12,18 @@ https://expo.io/@nicolasepiscopo/alpha-scroll-flat-list
 
 ## Props
 
+- Every FlatList props
 - hideSideBar (bool | default: false): if true the alphabetical sidebar wouldn't be shown.
 - scrollKey (string | default: 'name'): the property name from the item list that would be used for scrolling.
 - activeColor (string | default: '#52bad5'): the color of the alphabetical sidebar pointer.
 - reverse (bool | default: false): by default the alphabetical sidebar is from A to Z. If reverse is true, it would be Z to A.
 - itemHeight (number | default: 20): the height of each rendered item (this is needed to calculate the scrollToIndex on the FlatList).
+- scrollBarColor (string | default: '#000'): the color of the letters in the side alphabetic scrollbar.
+- scrollBarFontSizeMultiplier (number | default: 1): a multiplier for scaling the fontsize (it uses *react-native-responsive-fontsize* for a responsive approach)
+
+## Methods
+
+- Every FlatList methods
 
 ## Installation
 
