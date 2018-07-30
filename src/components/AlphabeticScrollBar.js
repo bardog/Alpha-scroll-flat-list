@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {View, Text, PanResponder, PixelRatio, Platform} from 'react-native';
+import {View, Text, PanResponder} from 'react-native';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
+import ResponsiveFontSize from 'react-native-responsive-fontsize';
 
 const ALPHABET = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const isAndroid = Platform.OS === 'android';
 
 class AlphabeticScrollBar extends Component {
     constructor (props) {
@@ -39,7 +39,7 @@ class AlphabeticScrollBar extends Component {
     }
 
     getTouchedLetter (y) {
-        const top = y - (this.containerTop || 0) - 10;
+        const top = y - (this.containerTop || 0) - 5;
 
         if (top >= 1 && top <= this.containerHeight) {
             this.setState({
@@ -76,10 +76,9 @@ class AlphabeticScrollBar extends Component {
 
     handleOnLayout () {
         this.alphabetContainer.measure((width, x1, y1, height, px, py) => {
-            if (!this.containerTop && !this.containerHeight && !this.portrait) {
+            if (!this.containerTop && !this.containerHeight) {
                 this.containerTop = py;
                 this.containerHeight = height;
-                this.portrait = width < height;
             }
         });
     }
@@ -96,7 +95,7 @@ class AlphabeticScrollBar extends Component {
                     <View key={letter} style={{paddingVertical: 1}}>
                         <Text style={{
                             ...styles.letter,
-                            fontSize: isAndroid ? ((this.portrait ? 40 : 50) / PixelRatio.get()) / PixelRatio.getFontScale() : (this.portrait ? 20 : 8), 
+                            fontSize: ResponsiveFontSize(this.props.isPortrait ? 2 : 1.6), 
                         }}>
                             {letter}
                         </Text>
@@ -123,7 +122,8 @@ AlphabeticScrollBar.propTypes = {
     onScroll: PropTypes.func,
     onScrollEnds: PropTypes.func,
     activeColor: PropTypes.string,
-    reverse: PropTypes.bool
+    reverse: PropTypes.bool,
+    isPortrait: PropTypes.bool
 };
 
 AlphabeticScrollBar.propTypes = {

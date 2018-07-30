@@ -1,9 +1,17 @@
 {
   "name": "alpha-scroll-flat-list",
-  "version": "0.2.1",
+  "version": "0.2.12",
   "private": false,
   "author": "nicolasepiscopo",
-  "keywords": ["react-native", "react", "flat-list", "flatlist", "list", "alphabetic", "scroll"],
+  "keywords": [
+    "react-native",
+    "react",
+    "flat-list",
+    "flatlist",
+    "list",
+    "alphabetic",
+    "scroll"
+  ],
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +26,8 @@
   },
   "dependencies": {
     "lodash": "^4.16.6",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-native-responsive-fontsize": "^0.1.2"
   },
   "peerDependencies": {
     "react": "^16.0.0-alpha.12",

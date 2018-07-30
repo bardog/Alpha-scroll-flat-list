@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Platform, Dimensions } from 'react-native';
 import debounce from 'lodash/debounce';
 
 import AlphabeticScrollBar from './components/AlphabeticScrollBar';
@@ -12,7 +12,8 @@ export default class AlphaScrollFlatList extends Component {
 
         this.state = {
             activeLetterViewTop: 0,
-            activeLetter: undefined
+            activeLetter: undefined,
+            portrait: this.isPortrait()
         };
 
         this.scrollToEnd = this.scrollToEnd.bind(this);
@@ -95,16 +96,32 @@ export default class AlphaScrollFlatList extends Component {
         };
     }
 
+    isPortrait () {
+        const {width, height} = Dimensions.get('window');
+
+        return width < height;
+    }
+
+    handleOnLayout () {
+        debugger;
+        const isPortrait = this.isPortrait();
+
+        if (isPortrait !== this.state.isPortrait)
+            this.setState({
+                isPortrait
+            });
+    }
+
     render() {
         return (
-            <View>
+            <View onLayout={this.handleOnLayout.bind(this)}>
                 <FlatList 
                     {...this.props} 
                     ref={elem => this.list = elem} 
                     getItemLayout={this.getItemLayout.bind(this)}
                 />
                 {this.props.hideSideBar ? null : (
-                    <AlphabeticScrollBar reverse={this.props.reverse} activeColor={this.props.activeColor} onScroll={debounce(this.handleOnScroll.bind(this))} onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} />
+                    <AlphabeticScrollBar isPortrait={this.state.isPortrait} reverse={this.props.reverse} activeColor={this.props.activeColor} onScroll={debounce(this.handleOnScroll.bind(this))} onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} />
                 )}
                 {this.state.activeLetter && !this.props.hideSideBar ? <AlphabeticScrollBarPointer letter={this.state.activeLetter} color={this.props.activeColor} top={this.state.activeLetterViewTop} /> : null} 
             </View>
