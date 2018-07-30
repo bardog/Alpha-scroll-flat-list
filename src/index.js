@@ -120,7 +120,15 @@ export default class AlphaScrollFlatList extends Component {
                     getItemLayout={this.getItemLayout.bind(this)}
                 />
                 {this.props.hideSideBar ? null : (
-                    <AlphabeticScrollBar isPortrait={this.state.isPortrait} reverse={this.props.reverse} activeColor={this.props.activeColor} onScroll={debounce(this.handleOnScroll.bind(this))} onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} />
+                    <AlphabeticScrollBar 
+                        isPortrait={this.state.isPortrait} 
+                        reverse={this.props.reverse} 
+                        activeColor={this.props.activeColor}
+                        fontColor={this.props.scrollBarColor}
+                        fontSizeMultiplier={this.props.scrollBarFontSizeMultiplier}
+                        onScroll={debounce(this.handleOnScroll.bind(this))} 
+                        onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} 
+                    />
                 )}
                 {this.state.activeLetter && !this.props.hideSideBar ? <AlphabeticScrollBarPointer letter={this.state.activeLetter} color={this.props.activeColor} top={this.state.activeLetterViewTop} /> : null} 
             </View>
@@ -131,10 +139,12 @@ export default class AlphaScrollFlatList extends Component {
 AlphaScrollFlatList.propTypes = {
     hideSideBar: PropTypes.bool,
     scrollKey: PropTypes.string,
-    activeColor: PropTypes.string,
     reverse: PropTypes.bool,
     itemHeight: PropTypes.number,
-    data: PropTypes.array
+    data: PropTypes.array,
+    activeColor: PropTypes.string,
+    scrollBarColor: PropTypes.string,
+    scrollBarFontSizeMultiplier: PropTypes.number
 };
 
 AlphaScrollFlatList.defaultProps = {
@@ -142,5 +152,6 @@ AlphaScrollFlatList.defaultProps = {
     scrollKey: 'name',
     activeColor: '#52bad5',
     reverse: false,
-    itemHeight: 20
+    itemHeight: 20,
+    scrollBarFontSizeMultiplier: 1,
 };
