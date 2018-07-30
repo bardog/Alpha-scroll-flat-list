@@ -103,7 +103,6 @@ export default class AlphaScrollFlatList extends Component {
     }
 
     handleOnLayout () {
-        debugger;
         const isPortrait = this.isPortrait();
 
         if (isPortrait !== this.state.isPortrait)
