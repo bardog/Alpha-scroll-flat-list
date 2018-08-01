@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, View, Platform, Dimensions } from 'react-native';
 import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 
 import AlphabeticScrollBar from './components/AlphabeticScrollBar';
 import AlphabeticScrollBarPointer from './components/AlphabeticScrollBarPointer';
@@ -13,7 +14,7 @@ export default class AlphaScrollFlatList extends Component {
         this.state = {
             activeLetterViewTop: 0,
             activeLetter: undefined,
-            portrait: this.isPortrait()
+            isPortrait: this.isPortrait()
         };
 
         this.scrollToEnd = this.scrollToEnd.bind(this);
@@ -25,34 +26,34 @@ export default class AlphaScrollFlatList extends Component {
     }
 
     //Forwarded flat list methods
-    scrollToEnd () {
+    scrollToEnd (...params) {
         if (this.list)
-            this.list.scrollToEnd();
+            this.list.scrollToEnd(...params);
     }
 
-    scrollToIndex () {
+    scrollToIndex (...params) {
         if (this.list)
-            this.list.scrollToIndex();
+            this.list.scrollToIndex(...params);
     }
 
-    scrollToItem () {
+    scrollToItem (...params) {
         if (this.list)
-            this.list.scrollToItem();
+            this.list.scrollToItem(...params);
     }
 
-    scrollToOffset () {
+    scrollToOffset (...params) {
         if (this.list)
-            this.list.scrollToOffset();
+            this.list.scrollToOffset(...params);
     }
 
-    recordInteraction () {
+    recordInteraction (...params) {
         if (this.list)
-            this.list.recordInteraction();
+            this.list.recordInteraction(...params);
     }
 
-    flashScrollIndicators () {
+    flashScrollIndicators (...params) {
         if (this.list)
-            this.list.flashScrollIndicators();
+            this.list.flashScrollIndicators(...params);
     }
 
     //Proper methods
@@ -76,7 +77,7 @@ export default class AlphaScrollFlatList extends Component {
         }
 
         if (index !== -1)
-            this.list.scrollToIndex({animated: false, index, viewPosition: 0});
+            this.list.scrollToOffset({animated: false, offset: index * this.props.itemHeight});
     }
 
     handleOnScrollEnds () {
@@ -110,14 +111,13 @@ export default class AlphaScrollFlatList extends Component {
                 isPortrait
             });
     }
-
+    
     render() {
         return (
             <View onLayout={this.handleOnLayout.bind(this)}>
                 <FlatList 
-                    {...this.props} 
-                    ref={elem => this.list = elem} 
-                    getItemLayout={this.getItemLayout.bind(this)}
+                    {...this.props}
+                    ref={elem => this.list = elem}
                 />
                 {this.props.hideSideBar ? null : (
                     <AlphabeticScrollBar 
