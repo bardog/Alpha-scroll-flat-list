@@ -92,7 +92,7 @@ class AlphabeticScrollBar extends Component {
                 style={styles.container}
             >
                 {this.state.alphabet.map(letter => (
-                    <View key={letter} style={{paddingVertical: 1}}>
+                    <View key={letter}>
                         <Text style={{
                             ...styles.letter,
                             ...this.props.fontColor ? {color: this.props.fontColor} : {},
@@ -109,9 +109,14 @@ class AlphabeticScrollBar extends Component {
 
 const styles = {
     container: {
+        width: 30,
         position: 'absolute',
         right: 0,
-        padding: 10
+        top: 40,
+        bottom: 40,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     letter: {
         alignSelf: 'center',

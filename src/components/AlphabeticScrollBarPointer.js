@@ -8,7 +8,7 @@ class AlphabeticScrollBarPointer extends Component {
             <View
                 style={{
                     ...styles.container,
-                    top: this.props.top - 10,
+                    top: this.props.top + 20,
                     backgroundColor: this.props.color,
                 }}
             >
