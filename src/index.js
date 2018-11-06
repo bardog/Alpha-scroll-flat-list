@@ -59,6 +59,8 @@ export default class AlphaScrollFlatList extends Component {
     //Proper methods
     handleOnScroll (letter, activeLetterViewTop) {
         let index;
+        if (!this.state.activeLetter)
+            this.props.onScrollStarts();
         
         this.setState({
             activeLetter: letter,
@@ -81,6 +83,7 @@ export default class AlphaScrollFlatList extends Component {
     }
 
     handleOnScrollEnds () {
+        this.props.onScrollEnds();
         this.setState({
             activeLetter: undefined,
             activeLetterViewTop: 0
@@ -144,7 +147,9 @@ AlphaScrollFlatList.propTypes = {
     data: PropTypes.array,
     activeColor: PropTypes.string,
     scrollBarColor: PropTypes.string,
-    scrollBarFontSizeMultiplier: PropTypes.number
+    scrollBarFontSizeMultiplier: PropTypes.number,
+    onScrollEnds: PropTypes.func,
+    onScrollStarts: PropTypes.func,
 };
 
 AlphaScrollFlatList.defaultProps = {
@@ -154,4 +159,6 @@ AlphaScrollFlatList.defaultProps = {
     reverse: false,
     itemHeight: 20,
     scrollBarFontSizeMultiplier: 1,
+    onScrollEnds: () => {},
+    onScrollStarts: () => {}
 };
