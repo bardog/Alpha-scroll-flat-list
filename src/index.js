@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, View, Platform, Dimensions } from 'react-native';
+import { FlatList, View, Dimensions } from 'react-native';
 import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
 
 import AlphabeticScrollBar from './components/AlphabeticScrollBar';
 import AlphabeticScrollBarPointer from './components/AlphabeticScrollBarPointer';
@@ -58,36 +57,39 @@ export default class AlphaScrollFlatList extends Component {
 
     //Proper methods
     handleOnScroll (letter, activeLetterViewTop) {
-        let index;
-        if (!this.state.activeLetter)
-            this.props.onScrollStarts();
-        
-        this.setState({
-            activeLetter: letter,
-            activeLetterViewTop
-        });
-        
-        if (letter === '#') {
-            //it's a number or a symbol, scroll to the top or to the bottom of the list
-            const firstIndex = 0;
-            const lastIndex = this.props.data.length - 1;
+        if (letter) {
+            let index;
 
-            index = this.props.reverse ? lastIndex : firstIndex;
-        } else {
-            //Get index of item with that letter and scroll to the first result on the list
-            index = this.props.data.findIndex(item => item[this.props.scrollKey].charAt(0).localeCompare(letter) === 0);    
+            if (this.state.activeLetter === undefined) {
+                this.props.onScrollStarts();
+            }
+
+            this.setState({
+                activeLetter: letter,
+                activeLetterViewTop
+            });
+            
+            if (letter === '#') {
+                //it's a number or a symbol, scroll to the top or to the bottom of the list
+                const firstIndex = 0;
+                const lastIndex = this.props.data.length - 1;
+    
+                index = this.props.reverse ? lastIndex : firstIndex;
+            } else {
+                //Get index of item with that letter and scroll to the first result on the list
+                index = this.props.data.findIndex(item => item[this.props.scrollKey].charAt(0).localeCompare(letter) === 0);    
+            }
+    
+            if (index !== -1)
+                this.list.scrollToOffset({animated: false, offset: index * this.props.itemHeight});
         }
-
-        if (index !== -1)
-            this.list.scrollToOffset({animated: false, offset: index * this.props.itemHeight});
     }
 
     handleOnScrollEnds () {
-        this.props.onScrollEnds();
         this.setState({
             activeLetter: undefined,
             activeLetterViewTop: 0
-        });
+        }, () => this.props.onScrollEnds());
     }
 
     getItemLayout (data, index) {
