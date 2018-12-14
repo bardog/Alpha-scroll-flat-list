@@ -7,7 +7,7 @@ import AlphabeticScrollBar from './components/AlphabeticScrollBar';
 import AlphabeticScrollBarPointer from './components/AlphabeticScrollBarPointer';
 
 export default class AlphaScrollFlatList extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -68,20 +68,20 @@ export default class AlphaScrollFlatList extends Component {
                 activeLetter: letter,
                 activeLetterViewTop
             });
-            
+
             if (letter === '#') {
                 //it's a number or a symbol, scroll to the top or to the bottom of the list
                 const firstIndex = 0;
                 const lastIndex = this.props.data.length - 1;
-    
+
                 index = this.props.reverse ? lastIndex : firstIndex;
             } else {
                 //Get index of item with that letter and scroll to the first result on the list
-                index = this.props.data.findIndex(item => item[this.props.scrollKey].charAt(0).localeCompare(letter) === 0);    
+                index = this.props.data.findIndex(item => item[this.props.scrollKey].charAt(0).localeCompare(letter) === 0);
             }
-    
+
             if (index !== -1)
-                this.list.scrollToOffset({animated: false, offset: index * this.props.itemHeight});
+                this.list.scrollToOffset({ animated: false, offset: index * this.props.itemHeight });
         }
     }
 
@@ -93,17 +93,17 @@ export default class AlphaScrollFlatList extends Component {
     }
 
     getItemLayout (data, index) {
-        const {itemHeight} = this.props;
-        
+        const { itemHeight } = this.props;
+
         return {
-            length: itemHeight, 
-            offset: itemHeight * index, 
+            length: itemHeight,
+            offset: itemHeight * index,
             index
         };
     }
 
     isPortrait () {
-        const {width, height} = Dimensions.get('window');
+        const { width, height } = Dimensions.get('window');
 
         return width < height;
     }
@@ -116,26 +116,35 @@ export default class AlphaScrollFlatList extends Component {
                 isPortrait
             });
     }
-    
-    render() {
+
+    render () {
         return (
             <View onLayout={this.handleOnLayout.bind(this)}>
-                <FlatList 
+                <FlatList
                     {...this.props}
                     ref={elem => this.list = elem}
                 />
                 {this.props.hideSideBar ? null : (
-                    <AlphabeticScrollBar 
-                        isPortrait={this.state.isPortrait} 
-                        reverse={this.props.reverse} 
+                    <AlphabeticScrollBar
+                        isPortrait={this.state.isPortrait}
+                        reverse={this.props.reverse}
                         activeColor={this.props.activeColor}
                         fontColor={this.props.scrollBarColor}
+                        scrollBarStyleContainer={this.props.scrollBarStyleContainer}
                         fontSizeMultiplier={this.props.scrollBarFontSizeMultiplier}
-                        onScroll={debounce(this.handleOnScroll.bind(this))} 
-                        onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))} 
+                        onScroll={debounce(this.handleOnScroll.bind(this))}
+                        onScrollEnds={debounce(this.handleOnScrollEnds.bind(this))}
                     />
                 )}
-                {this.state.activeLetter && !this.props.hideSideBar ? <AlphabeticScrollBarPointer letter={this.state.activeLetter} color={this.props.activeColor} top={this.state.activeLetterViewTop} /> : null} 
+                {this.state.activeLetter && !this.props.hideSideBar
+                    ? <AlphabeticScrollBarPointer
+                        letter={this.state.activeLetter}
+                        color={this.props.activeColor}
+                        top={this.state.activeLetterViewTop}
+                        style={this.props.scrollBarPointerContainerStyle}
+                    />
+                    : null
+                }
             </View>
         );
     }
@@ -161,6 +170,6 @@ AlphaScrollFlatList.defaultProps = {
     reverse: false,
     itemHeight: 20,
     scrollBarFontSizeMultiplier: 1,
-    onScrollEnds: () => {},
-    onScrollStarts: () => {}
+    onScrollEnds: () => { },
+    onScrollStarts: () => { }
 };
