@@ -89,7 +89,7 @@ class AlphabeticScrollBar extends Component {
                 ref={elem => this.alphabetContainer = elem}
                 {...this.panResponder.panHandlers}
                 onLayout={this.handleOnLayout.bind(this)}
-                style={styles.container}
+                style={[styles.container, this.props.scrollBarStyleContainer]}
             >
                 {this.state.alphabet.map(letter => (
                     <View key={letter}>
@@ -109,11 +109,11 @@ class AlphabeticScrollBar extends Component {
 
 const styles = {
     container: {
-        width: 30,
+        width: 24,
         position: 'absolute',
         right: 0,
-        top: 40,
-        bottom: 40,
+        top: 0,
+        bottom: 0,
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center'

@@ -6,11 +6,14 @@ class AlphabeticScrollBarPointer extends Component {
     render() {
         return (
             <View
-                style={{
-                    ...styles.container,
-                    top: this.props.top + 20,
-                    backgroundColor: this.props.color,
-                }}
+                style={[
+                    {
+                        ...styles.container,
+                        top: this.props.top - 15,
+                        backgroundColor: this.props.color,
+                    },
+                    this.props.style
+                ]}
             >
                 <Text style={styles.letter}>
                     {this.props.letter}
