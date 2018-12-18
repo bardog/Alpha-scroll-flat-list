@@ -22,6 +22,7 @@ https://expo.io/@nicolasepiscopo/alpha-scroll-flat-list
 - scrollBarFontSizeMultiplier (number | default: 1): a multiplier for scaling the fontsize (it uses *react-native-responsive-fontsize* for a responsive approach)
 - onScrollStarts (function | default: does nothing): a function that executes when the index scroll starts.
 - onScrollEnds (function | default: does nothing): a function that executes when the index scroll ends.
+- scrollBarContainerStyle (object | default: {}): a style object for scrollbar container.
 
 ## Methods
 
