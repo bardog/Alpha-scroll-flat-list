@@ -1,3 +1,5 @@
+![](https://img.shields.io/npm/v/alpha-scroll-flat-list.svg)
+
 # Alpha scroll flat list
 
 ## Description
