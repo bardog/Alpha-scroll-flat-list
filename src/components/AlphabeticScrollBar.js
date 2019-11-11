@@ -15,9 +15,7 @@ class AlphabeticScrollBar extends Component {
             activeLetterViewTop: 0,
             alphabet: props.reverse ? [...ALPHABET].reverse() : ALPHABET
         };
-    }
 
-    componentDidMount() {
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponder: () => true,
