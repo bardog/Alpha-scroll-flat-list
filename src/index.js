@@ -76,8 +76,8 @@ export default class AlphaScrollFlatList extends Component {
 
                 index = this.props.reverse ? lastIndex : firstIndex;
             } else {
-                //Get index of item with that letter and scroll to the first result on the list
-                index = this.props.data.findIndex(item => item[this.props.scrollKey].charAt(0).localeCompare(letter) === 0);
+                const scrollKeyIsFunction = typeof this.props.scrollKey === 'function';
+                index = this.props.data.findIndex(item =>(scrollKeyIsFunction ? this.props.scrollKey(item) : item[this.props.scrollKey]).charAt(0).localeCompare(letter) === 0);
             }
 
             if (index !== -1)
@@ -158,7 +158,10 @@ const styles = {
 
 AlphaScrollFlatList.propTypes = {
     hideSideBar: PropTypes.bool,
-    scrollKey: PropTypes.string,
+    scrollKey: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]),
     reverse: PropTypes.bool,
     itemHeight: PropTypes.number,
     data: PropTypes.array,
