@@ -119,7 +119,7 @@ export default class AlphaScrollFlatList extends Component {
 
     render () {
         return (
-            <View onLayout={this.handleOnLayout.bind(this)}>
+            <View onLayout={this.handleOnLayout.bind(this)} style={styles.container}>
                 <FlatList
                     {...this.props}
                     ref={elem => this.list = elem}
@@ -149,6 +149,12 @@ export default class AlphaScrollFlatList extends Component {
         );
     }
 }
+
+const styles = {
+    container: {
+        flex: 1,
+    }
+};
 
 AlphaScrollFlatList.propTypes = {
     hideSideBar: PropTypes.bool,
