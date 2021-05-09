@@ -25,7 +25,7 @@
     "url": "https://github.com/bardog/Alpha-scroll-flat-list/issues"
   },
   "dependencies": {
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.5.10",
     "react-native-responsive-fontsize": "0.1.2"
   },
